@@ -1,6 +1,6 @@
-import Mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-var userSchema = new User ({
+var userSchema = new Schema({
   name: String,
   email: {
     type: String,
