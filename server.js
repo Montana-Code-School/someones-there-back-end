@@ -19,8 +19,6 @@ router.route('/users/:users_id')
   .put(userupdate)
   .delete(userdelete)
 
-
-
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/users');
 
@@ -29,8 +27,14 @@ const app = express();
 
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
+// Pass the authenication middleware
+// const authCheckMiddleware = require('./server/middleware/auth_check');
+// app.use('/api', authCheckMiddleware);
 // Use v1 as prefix for all API endpoints
 app.use('/api', router);
+
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
 const server = app.listen(3000, () => {
   const { address, port } = server.address();

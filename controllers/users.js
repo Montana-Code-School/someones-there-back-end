@@ -1,9 +1,7 @@
-import User from '../models/user';
+import User from '../server/models/user';
 
 
 export const index = (req, res, next) => {
-  console.log("index");
-  console.log(req.body);
   // Find all movies and return json response
   User.find().lean().exec((err, users) => res.json(
     // Iterate through each movie
@@ -16,16 +14,17 @@ export const index = (req, res, next) => {
 
 
 export const userCreate = (req, res, next) => {
-  console.log("create");
+  console.log(req.body);
+  console.log("HELLLO");
   const user = new User();
-  user.name = "Panda";
-  user.email = "panda@email.com"
-  user.password = "12345678"
-  user.save((err) =>  {
-    if (err)
-     res.send(err);
+  user.name = "";
+  user.email = "";
+  user.password = "";
+  // user.save((err) =>  {
+  //   if (err)
+  //    res.send(err);
     res.json({message: "happy times!"})
-  });
+  // });
 };
 
 
