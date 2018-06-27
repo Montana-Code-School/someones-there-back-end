@@ -2,12 +2,14 @@ import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 const UserSchema = new Schema({
-  name: String,
+  firstName: String,
+  lastName: String,
   email: {
     type: String,
     index: {unique: true}
   },
-  password: String
+  password: String,
+  birthday: String 
 });
 
 /**

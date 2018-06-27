@@ -14,18 +14,20 @@ export const index = (req, res, next) => {
 
 
 export const userCreate = (req, res, next) => {
-  console.log(req.body);
-  console.log("HELLLO");
+  console.log(req.body.firstName);
+  console.log(req.body.email);
   const user = new User();
-  user.name = "";
-  user.email = "";
-  user.password = "";
-  // user.save((err) =>  {
-  //   if (err)
-  //    res.send(err);
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.email = req.body.email;
+  user.password = req.body.password;
+  user.birthday = req.body.birthday;
+  user.save((err) =>  {
+    if (err)
+     res.send(err);
     res.json({message: "happy times!"})
-  // });
-};
+  });
+}
 
 
 // this is our id get
