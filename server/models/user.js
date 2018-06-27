@@ -9,7 +9,18 @@ const UserSchema = new Schema({
     index: {unique: true}
   },
   password: String,
-  birthday: String 
+  birthday: String,
+  holidays: Boolean,
+  pictures: String,
+  selfImprovment: {
+    exercise: Boolean,
+    eating: Boolean,
+    wakingUp: Boolean,
+    personalHygeine: Boolean,
+    sleep: Boolean,
+    none: Boolean
+  }
+
 });
 
 /**
