@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
+import Preferences from './preferences';
 
 const UserSchema = new Schema({
   firstName: String,
@@ -10,18 +11,8 @@ const UserSchema = new Schema({
   },
   password: String,
   birthday: String,
-  holidays: Boolean,
-  pictures: String,
-  selfImprovment: {
-    exercise: Boolean,
-    eating: Boolean,
-    wakingUp: Boolean,
-    personalHygeine: Boolean,
-    sleep: Boolean,
-    none: Boolean
-  }
-
-});
+  userPreferences: {type: mongoose.Schema.Types.ObjectId, ref: 'Preferences'}
+  });
 
 /**
  * Compare the passed password with the value in the database. A model method.

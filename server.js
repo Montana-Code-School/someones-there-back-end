@@ -2,8 +2,15 @@ import express, { Router } from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-// Import index action from movies controller
-import { index, userCreate, userid, userupdate, userdelete } from './controllers/users';
+import
+{ index,
+  prefIndex,
+  userCreate,
+  userId,
+  userUpdate,
+  userDelete,
+  preferencesCreate,
+  preferencesUpdate} from './controllers/users';
 
 // Initialize the router
 const router = Router();
@@ -18,13 +25,6 @@ app.use(morgan('combined'));
 // const authCheckMiddleware = require('./server/middleware/auth_check');
 // app.use('/api', authCheckMiddleware);
 
-// Use v1 as prefix for all API endpoints
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -35,9 +35,17 @@ router.route('/users')
   .post(userCreate)
 
 router.route('/users/:users_id')
-  .get(userid)
-  .put(userupdate)
-  .delete(userdelete)
+  .get(userId)
+  .put(userUpdate)
+  .delete(userDelete)
+
+router.route('/preferences/:users_id')
+  .get(userId) 
+  .post(preferencesCreate)
+  .put(preferencesUpdate)
+
+
+
 
 // Initialize http server
 app.use('/api', router);
