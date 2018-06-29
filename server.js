@@ -11,12 +11,13 @@ import
   userDelete,
   preferencesCreate,
   preferencesUpdate} from './controllers/users';
-
+const db = process.env.MONGODB_URI || 'mongodb://localhost/users';
+const port = process.env.PORT || 3000;
 // Initialize the router
 const router = Router();
 
 const app = express();
-mongoose.connect('mongodb://localhost/users');
+mongoose.connect(db);
 
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
@@ -50,7 +51,7 @@ router.route('/preferences/:users_id')
 // Initialize http server
 app.use('/api', router);
 
-const server = app.listen(3000, () => {
+const server = app.listen(port, () => {
   const { address, port } = server.address();
   console.log(`Listening at http://${address}:${port}`);
 });
