@@ -40,7 +40,7 @@ router.route('/users/:users_id')
   .delete(userDelete)
 
 router.route('/preferences/:users_id')
-  .get(userId) 
+  .get(userId)
   .post(preferencesCreate)
   .put(preferencesUpdate)
 

@@ -11,7 +11,10 @@ const UserSchema = new Schema({
   },
   password: String,
   birthday: String,
-  userPreferences: {type: mongoose.Schema.Types.ObjectId, ref: 'Preferences'}
+  userPreferences: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Preferences'
+   }
   });
 
 /**

@@ -24,24 +24,9 @@ export const prefIndex = (req, res, next) => {
   ));
 };
 
-
 //CREATE
-export const userCreate = (req, res, next) => {
-  const user = new User();
-  user.firstName = req.body.firstName;
-  user.lastName = req.body.lastName;
-  user.email = req.body.email;
-  user.password = req.body.password;
-  user.birthday = req.body.birthday;
-  user.save((err) =>  {
-    if (err)
-     res.send(err);
-    res.json({message: "happy times!"})
-  });
-}
-
 export const preferencesCreate = (req, res, next) => {
-  console.log(req.body);
+  console.log(req.params.users_id);
   User.findById(req.params.users_id, (err, user) => {
     if(err)
      res.send(err);
@@ -55,17 +40,33 @@ export const preferencesCreate = (req, res, next) => {
      preferences.sleep = req.body.sleep;
      preferences.none = req.body.none;
      console.log(preferences._id);
+     user.userPreferences  = preferences;
      preferences.save((error, pref) => {
        if (err)
         res.send(err);
-        user.userPreferences = pref;
-        user.save((error) => {
-            if (err)
-             res.send(err);
-               res.json(user);
-            });
-         })
      });
+     user.save((error) => {
+         if (err)
+          res.send(err);
+            res.json(user);
+     });
+  })
+}
+
+
+export const userCreate = (req, res, next) => {
+  const user = new User();
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.email = req.body.email;
+  user.password = req.body.password;
+  user.birthday = req.body.birthday;
+  user.Preferences = preferences;
+  user.save((err) =>  {
+    if (err)
+     res.send(err);
+    res.json({message: "happy times!"})
+  });
 }
 
 // GET
