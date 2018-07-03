@@ -11,6 +11,8 @@ import
   userDelete,
   preferencesCreate,
   preferencesUpdate} from './controllers/users';
+import { deviceRegister, send} from './controllers/devices';
+
 const db = process.env.MONGODB_URI || 'mongodb://localhost/users';
 const port = process.env.PORT || 3000;
 // Initialize the router
@@ -25,7 +27,6 @@ app.use(morgan('combined'));
 // Pass the authenication middleware
 // const authCheckMiddleware = require('./server/middleware/auth_check');
 // app.use('/api', authCheckMiddleware);
-
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -43,8 +44,11 @@ router.route('/users/:users_id')
 router.route('/preferences/:pref_id')
   .post(preferencesUpdate)
 
+router.route('/devices')
+  .post(deviceRegister)
 
-
+router.route('/send')
+  .get(send)
 
 // Initialize http server
 app.use('/api', router);

@@ -28,6 +28,7 @@
     "nodemon": "^1.17.5"
   },
   "dependencies": {
+    "apns": "^0.1.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
