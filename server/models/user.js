@@ -13,7 +13,7 @@ const UserSchema = new Schema({
   birthday: String,
   userPreferences: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Preferences'
+    ref: 'Preferences',  
    }
   });
 

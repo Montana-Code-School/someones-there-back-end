@@ -8,7 +8,7 @@ const PreferencesSchema = new Schema({
   exercise: Boolean,
   eating: Boolean,
   wakingUp: Boolean,
-  personalHygeine: Boolean,
+  personalHygiene: Boolean,
   sleep: Boolean,
   none: Boolean
 });

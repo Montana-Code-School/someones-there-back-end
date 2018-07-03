@@ -24,48 +24,35 @@ export const prefIndex = (req, res, next) => {
   ));
 };
 
-//CREATE
-export const preferencesCreate = (req, res, next) => {
-  console.log(req.params.users_id);
-  User.findById(req.params.users_id, (err, user) => {
-    if(err)
-     res.send(err);
-     let preferences = new Preferences();
-     preferences.holidays = req.body.holidays;
-     preferences.pictures = req.body.pictures;
-     preferences.exercise = req.body.exercise;
-     preferences.eating = req.body.eating;
-     preferences.wakingUp = req.body.wakingUp;
-     preferences.personalHygeine = req.body.personalHygeine;
-     preferences.sleep = req.body.sleep;
-     preferences.none = req.body.none;
-     console.log(preferences._id);
-     user.userPreferences  = preferences;
-     preferences.save((error, pref) => {
-       if (err)
-        res.send(err);
-     });
-     user.save((error) => {
-         if (err)
-          res.send(err);
-            res.json(user);
-     });
+//UPDATE
+export const preferencesUpdate = (req, res, next) => {
+  Preferences.findByIdAndUpdate(req.params.pref_id, {$set: req.body}, {upsert: true},(err, preferences) => {
+    if (err)
+      res.send(err);
+    res.json({
+      message: 'preferences saved',
+      preferences: preferences
+    })
   })
 }
 
-
+//CREATE
 export const userCreate = (req, res, next) => {
+  const preferences = new Preferences();
   const user = new User();
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.email = req.body.email;
   user.password = req.body.password;
   user.birthday = req.body.birthday;
-  user.Preferences = preferences;
-  user.save((err) =>  {
+  user.userPreferences = preferences;
+  user.save((err, user) =>  {
     if (err)
      res.send(err);
-    res.json({message: "happy times!"})
+    res.json({
+      message: "happy times!",
+      user: user
+    })
   });
 }
 
@@ -97,19 +84,6 @@ export const userUpdate = (req, res) => {
           res.send(err);
         res.json({
           message: "User Updated!"
-        })
-      })
-    })
-  }
-export const preferencesUpdate = (req, res) => {
-    User.findById(req.params.users_id, function(err, user) {
-      if (err)
-        res.send(err);
-      user.save((err) => {
-        if (err)
-          res.send(err);
-        res.json({
-          message: "Preferences Updated!"
         })
       })
     })
