@@ -37,15 +37,17 @@ export const preferencesUpdate = (req, res, next) => {
 }
 
 //CREATE
-export const userCreate = (req, res, next) => {
+export const userCreate = (req, res) => {
   const preferences = new Preferences();
   const user = new User();
+  console.log("req.body", req.body);
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.email = req.body.email;
   user.password = req.body.password;
   user.birthday = req.body.birthday;
   user.userPreferences = preferences;
+  console.log("user", user);
   user.save((err, user) =>  {
     if (err)
      res.send(err);
