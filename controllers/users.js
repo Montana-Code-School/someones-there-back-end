@@ -40,7 +40,9 @@ export const preferencesUpdate = (req, res, next) => {
 export const userCreate = (req, res) => {
   const preferences = new Preferences();
   const user = new User();
-  console.log("req.body", req.body);
+  console.log("req", req);
+  console.log("user", user);
+  console.log("preferences", preferences);
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.email = req.body.email;

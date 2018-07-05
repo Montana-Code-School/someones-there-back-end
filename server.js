@@ -28,7 +28,7 @@ app.use(morgan('combined'));
 // app.use('/api', authCheckMiddleware);
 
 
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Handle /movies.json route with index action from movies controller
