@@ -63,7 +63,15 @@ export const userId = (req, res) => {
      res.send(err);
     res.json(user);
   })
-} //Add preferences stuff here to attach to user?
+}
+
+export const prefId = (req, res) => {
+  Preferences.findById(req.params.pref_id, (err, pref) => {
+    if(err)
+     res.send(err);
+    res.json(pref);
+  })
+}
 
 
 

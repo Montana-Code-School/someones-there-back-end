@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt';
 const PreferencesSchema = new Schema({
   birthday: String,
   holidays: Boolean,
-  pictures: String,
   exercise: Boolean,
   eating: Boolean,
   wakingUp: Boolean,

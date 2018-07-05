@@ -10,6 +10,7 @@ import
   userUpdate,
   userDelete,
   preferencesCreate,
+  prefId,
   preferencesUpdate} from './controllers/users';
 const db = process.env.MONGODB_URI || 'mongodb://localhost/users';
 const port = process.env.PORT || 3000;
@@ -42,7 +43,7 @@ router.route('/users/:users_id')
 
 router.route('/preferences/:pref_id')
   .post(preferencesUpdate)
-
+  .get(prefId)
 
 
 
