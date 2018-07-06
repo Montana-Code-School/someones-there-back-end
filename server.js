@@ -12,7 +12,8 @@ import
   userDelete,
   preferencesCreate,
   prefId,
-  preferencesUpdate} from './controllers/users';
+  preferencesUpdate } from './controllers/users';
+  
 const db = process.env.MONGODB_URI || 'mongodb://localhost/users';
 const port = process.env.PORT || 3000;
 // Initialize the router
@@ -24,10 +25,6 @@ mongoose.connect(db);
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
 
-// Pass the authenication middleware
-// const authCheckMiddleware = require('./server/middleware/auth_check');
-// app.use('/api', authCheckMiddleware);
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -35,7 +32,6 @@ app.use(bodyParser.json());
 router.route('/users')
   .get(index)
   .post(userCreate)
-
 
 router.route('/users/:users_id')
   .get(userId)

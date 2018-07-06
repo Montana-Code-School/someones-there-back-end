@@ -13,9 +13,9 @@ const UserSchema = new Schema({
   birthday: String,
   userPreferences: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Preferences',  
-   }
-  });
+    ref: 'Preferences',
+  }
+});
 
 /**
  * Compare the passed password with the value in the database. A model method.
@@ -26,7 +26,6 @@ const UserSchema = new Schema({
 UserSchema.methods.comparePassword = function comparePassword(password, callback) {
   bcrypt.compare(password, this.password, callback);
 };
-
 
 /**
  * The pre-save hook method.
@@ -48,10 +47,8 @@ UserSchema.pre('save', function saveHook(next) {
       user.password = hash;
 
       return next();
-    });
-  });
+      });
+   });
 });
 
-
 module.exports = mongoose.model('User', UserSchema);
-// db.someones-there.insert({name: String, email: {type: String, index: {unique: true}}, password: String)})

@@ -1,3 +1,7 @@
 # someones-there-back-end
 
-start: npm run start
+To run production:
+exp start --no-dev
+
+To run development:
+exp start --dev

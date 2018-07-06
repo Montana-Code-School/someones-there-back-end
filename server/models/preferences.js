@@ -12,5 +12,4 @@ const PreferencesSchema = new Schema({
   none: Boolean
 });
 
-
 module.exports = mongoose.model('Preferences', PreferencesSchema);
