@@ -7,6 +7,7 @@ import
   prefIndex,
   userCreate,
   userId,
+  userEmail,
   userUpdate,
   userDelete,
   preferencesCreate,
@@ -27,7 +28,6 @@ app.use(morgan('combined'));
 // const authCheckMiddleware = require('./server/middleware/auth_check');
 // app.use('/api', authCheckMiddleware);
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -35,6 +35,7 @@ app.use(bodyParser.json());
 router.route('/users')
   .get(index)
   .post(userCreate)
+
 
 router.route('/users/:users_id')
   .get(userId)
@@ -45,7 +46,8 @@ router.route('/preferences/:pref_id')
   .post(preferencesUpdate)
   .get(prefId)
 
-
+router.route('/users/:email')
+  .get(userEmail)
 
 // Initialize http server
 app.use('/api', router);

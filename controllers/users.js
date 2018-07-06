@@ -14,9 +14,7 @@ export const index = (req, res, next) => {
 };
 
 export const prefIndex = (req, res, next) => {
-  // Find all movies and return json response
   Preferences.find().lean().exec((err, preferences) => res.json(
-    // Iterate through each movie
     { preferences: preferences.map(preference => ({
       ...preference,
 
@@ -25,8 +23,8 @@ export const prefIndex = (req, res, next) => {
 };
 
 //UPDATE
-export const preferencesUpdate = (req, res, next) => {
-  Preferences.findByIdAndUpdate(req.params.pref_id, {$set: req.body}, {upsert: true},(err, preferences) => {
+export const preferencesUpdate = (req, res) => {
+  Preferences.findByIdAndUpdate(req.params.pref_id, req.body, {new: true},(err, preferences) => {
     if (err)
       res.send(err);
     res.json({
@@ -40,9 +38,6 @@ export const preferencesUpdate = (req, res, next) => {
 export const userCreate = (req, res) => {
   const preferences = new Preferences();
   const user = new User();
-  console.log("req", req);
-  console.log("user", user);
-  console.log("preferences", preferences);
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.email = req.body.email;
@@ -53,9 +48,15 @@ export const userCreate = (req, res) => {
   user.save((err, user) =>  {
     if (err)
      res.send(err);
+  preferences.save((err, preferences) => {
+    if(err)
+      res.send(err);
+    console.log("pref saved!");
+  })
     res.json({
       message: "happy times!",
-      user: user
+      user: user,
+      preferences: preferences
     })
   });
 }
@@ -63,6 +64,15 @@ export const userCreate = (req, res) => {
 // GET
 export const userId = (req, res) => {
   User.findById(req.params.users_id, (err, user) => {
+    if(err)
+     res.send(err);
+    res.json(user);
+  })
+}
+
+export const userEmail = (req, res) => {
+  console.log(req.params.email);
+  User.findOne(req.params.email, (err, user) => {
     if(err)
      res.send(err);
     res.json(user);
