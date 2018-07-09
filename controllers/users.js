@@ -88,6 +88,15 @@ export const prefId = (req, res) => {
   })
 }
 
+export const userEmail = (req, res) => {
+  console.log("meow", req.params.email);
+ User.find({email: req.params.email}, (err, user) => {
+   if(err)
+    res.send(err);
+   res.json(user);
+ })
+}
+
 // DELETE
 export const userDelete = (req, res) => {
   User.remove({

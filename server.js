@@ -13,7 +13,7 @@ import
   preferencesCreate,
   prefId,
   preferencesUpdate } from './controllers/users';
-  
+
 const db = process.env.MONGODB_URI || 'mongodb://localhost/users';
 const port = process.env.PORT || 3000;
 // Initialize the router
@@ -42,7 +42,7 @@ router.route('/preferences/:pref_id')
   .post(preferencesUpdate)
   .get(prefId)
 
-router.route('/users/:email')
+router.route('/userFindByEmail/:email')
   .get(userEmail)
 
 // Initialize http server
