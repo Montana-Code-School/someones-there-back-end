@@ -9,4 +9,6 @@ If you have not cloned the front end, clone this repository:
       `npm install`
 
 To run the application with your front end,
-  simply use git command "npm run start"
+  simply use git command "npm run dev"
+
+The back end is being pushed to production using heroku.
