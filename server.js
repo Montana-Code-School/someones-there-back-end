@@ -16,19 +16,15 @@ import
 
 const db = process.env.MONGODB_URI || 'mongodb://localhost/users';
 const port = process.env.PORT || 3000;
-// Initialize the router
 const router = Router();
-
 const app = express();
 mongoose.connect(db);
 
-// Logger that outputs all requests into the console
 app.use(morgan('combined'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Handle /movies.json route with index action from movies controller
 router.route('/users')
   .get(index)
   .post(userCreate)
@@ -45,7 +41,6 @@ router.route('/preferences/:pref_id')
 router.route('/userFindByEmail/:email')
   .get(userEmail)
 
-// Initialize http server
 app.use('/api', router);
 
 const server = app.listen(port, () => {

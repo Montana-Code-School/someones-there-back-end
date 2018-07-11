@@ -31,16 +31,14 @@ export const preferencesUpdate = (req, res, next) => {
 }
 
 export const userUpdate = (req, res) => {
-    User.findById(req.params.users_id, function(err, user) {
+  User.findById(req.params.users_id, function(err, user) {
       if (err)
         res.send(err);
-
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
         user.email = req.body.email;
         user.password = req.body.password;
         user.birthday = req.body.birthday;
-
       user.save((err) => {
         if (err)
           res.send(err);
@@ -48,8 +46,8 @@ export const userUpdate = (req, res) => {
           message: "User Updated!"
         })
       })
-    })
-}
+   })
+ }
 
 //CREATE
 export const userCreate = (req, res) => {
@@ -89,7 +87,6 @@ export const prefId = (req, res) => {
 }
 
 export const userEmail = (req, res) => {
-  console.log("meow", req.params.email);
  User.find({email: req.params.email}, (err, user) => {
    if(err)
     res.send(err);
@@ -107,5 +104,5 @@ export const userDelete = (req, res) => {
       res.json({
           message: "User Obliterated!"
       })
-  })
+   })
 }
